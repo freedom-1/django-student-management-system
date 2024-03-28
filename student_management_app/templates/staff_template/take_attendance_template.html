@@ -1,7 +1,7 @@
 {% extends 'staff_template/base_template.html' %}
 
 {% block page_title %}
-    Take Attendance
+   Davomat bo'limi
 {% endblock page_title %}
 
 {% block main_content %}
@@ -16,7 +16,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Take Attendance</h3>
+                        <h3 class="card-title">Davomat olish</h3>
                     </div>
                     <!-- /.card-header -->
 
@@ -49,7 +49,7 @@
                         <div class="card-body">
                            
                             <div class="form-group">
-                                <label>Subject </label>
+                                <label>Fan </label>
                                 <select class="form-control" name="subject" id="subject">
                                     {% for subject in subjects %}
                                         <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
@@ -58,7 +58,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Session Year </label>
+                                <label>Sessiya yili </label>
                                 <select class="form-control" name="session_year" id="session_year">
                                     {% for session_year in session_years %}
                                         <option value="{{ session_year.id }}">{{ session_year.session_start_year }} to {{ session_year.session_end_year }}</option>
@@ -71,7 +71,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                        <button type="button" class="btn btn-primary" id="fetch_student">Fetch Student</button>
+                        <button type="button" class="btn btn-primary" id="fetch_student">Talabani qabul qilish</button>
                         </div>
 
                         {% comment %} Displaying Students Here {% endcomment %}
@@ -128,7 +128,7 @@
 
             })
             .fail(function(){
-                alert("Error in Fetching Students.")
+                alert("Talabalar qabul qilinishida xatolik paydo bo'ldi!")
             })
 
             // Save Attendance Data to Database
@@ -136,7 +136,7 @@
                 
                 //Disabling the Button while data is being saved in Server
                 $(this).attr("disabled", "disabled")
-                $(this).text("Saving Attendance Data...")
+                $(this).text("Ma'lumotlarni saqlash...")
 
                 //console.log("SAVE")
                 var student_data=$("input[name='student_data[]'").map(function(){ 
@@ -168,11 +168,11 @@
                     
                     if(response=="OK")
                     {
-                        alert("Attendance Saved!")
+                        alert("Qabul saqlandi!")
                     }
                     else
                     {
-                        alert("Failed to Save Attendance!")
+                        alert("Qabul saqlanishida xatolik!")
                     }
                     location.reload()
                     
@@ -180,7 +180,7 @@
                 })
 
                 .fail(function(){
-                    alert("Error in Saving Students Attendance Data.")
+                    alert("Talabalar qabulida xatolik paydo bo'ldi.")
                 })
 
             })
